@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Season's Greetings from INTERA Incorporated</title>
+
+        <!-- For replay button -->
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></script>
+
+        <style type="text/css">
+            body {
+                font-family: "Helvetica", Arial, sans-serif;
+            }
+
+            body #replayBtn:hover {
+                color: rgba(20, 20, 20, 1.0);
+            }
+
+            #videoElement {
+                width: 50%;
+                height: auto;
+                margin-top: 5px;
+            }
+
+            .video--ended {
+                display: none;
+            }
+
+            #interaLogo {
+                width: 200px;
+                height: 50px;
+                left: 25%;
+                cursor: pointer;
+                position: relative;
+            }
+
+            #replayBtn {
+                position: relative;
+                color: rgba(80, 80, 80, 0.9);
+                font-size: 2rem;
+                right: 8%;
+                visibility: hidden;
+                margin-top: 7px;
+            }
+
+            #trademark {
+                display: inline-block;
+                position: relative;
+                left: 8%;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="newBlock">
+            <a class="logo-link" href="http://www.intera.com">
+                <img id="interaLogo" src="http://www.intera.com/HolidayCard/INTERA_Logo.jpg"></img>
+            </a>
+        </div>
+
+        <div id="flashContent" style="text-align:center;">
+            <div class="video-container">
+                <video id="videoElement" autoplay="autoplay" controls>
+                    <source src="19. Intera_final.mp4" type="video/mp4" />
+                </video>
+            </div>
+
+            <div id="footer">
+                <span id="replayBtn" class="fa fa-repeat"></span>
+                <p id="trademark">
+                &copy; 2019 <a href="http://www.intera.com">INTERA Incorporated</a> - All rights reserved.<br>
+                </p>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            var videoTagElem = document.getElementById('videoElement');
+            var replayBtn = document.getElementById('replayBtn');
+
+            // Change this to change volume percentage
+            var volumePercentage=25;
+            videoTagElem.volume = volumePercentage / 100;
+
+            videoTagElem.addEventListener('ended', function () {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen()
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (videoTagElem.webkitExitFullScreen) {
+                    videoTagElem.webkitExitFullScreen();
+                }
+
+                replayBtn.style.visibility = 'visible';
+            }, false);
+
+            replayBtn.addEventListener('click', function () {
+                videoTagElem.currentTime = 0;
+                videoTagElem.play();
+
+                replayBtn.style.visibility = 'hidden';
+            });
+        </script>
+    </body>
+</html>
